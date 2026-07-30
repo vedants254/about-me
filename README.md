@@ -55,6 +55,30 @@ exact values in the dashboard — Vercel occasionally changes the apex IP.
 If the domain ever changes, update those five references (three `<meta>`/`<link>`
 tags in `index.html`, plus `robots.txt` and `sitemap.xml`).
 
+## Analytics
+
+Web Analytics is wired in `index.html` and `404.html` using the **plain-HTML**
+integration — no `npm i @vercel/analytics`, no React component, since this site
+has no build step:
+
+```html
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+```
+
+It only reports once deployed — Vercel serves `/_vercel/insights/*` at the edge,
+so that request 404s when you open the file locally. Enable it under
+**Project → Analytics → Enable** in the dashboard, and if the dashboard shows a
+different script path (switch the framework dropdown to **Other**), swap the
+`src` to match.
+
+To add Speed Insights later, enable it in the dashboard and add:
+
+```html
+<script>window.si=window.si||function(){(window.siq=window.siq||[]).push(arguments)};</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+```
+
 ## Local preview
 
 Open `index.html` directly in a browser, or serve the folder to get
