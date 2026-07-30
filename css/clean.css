@@ -181,11 +181,11 @@ body{font-family:var(--sans);font-size:16px;line-height:1.5}
 
 /* ---------- dock: matched to the reference ---------- */
 /* frosted glass — genuinely translucent, page blurs through it */
-.dock{bottom:16px;gap:4px;padding:8px 10px;border:1px solid rgba(255,255,255,.45);
-  background:rgba(255,255,255,.18);
-  backdrop-filter:blur(30px) saturate(2.1);-webkit-backdrop-filter:blur(30px) saturate(2.1);
-  box-shadow:0 14px 38px rgba(17,19,21,.14),0 2px 8px rgba(17,19,21,.05),
-    inset 0 1px 1px rgba(255,255,255,.85),inset 0 -1px 1px rgba(255,255,255,.3)}
+.dock{bottom:16px;gap:4px;padding:8px 10px;border:1px solid rgba(255,255,255,.5);
+  background:rgba(255,255,255,.1);
+  backdrop-filter:blur(34px) saturate(2.3);-webkit-backdrop-filter:blur(34px) saturate(2.3);
+  box-shadow:0 14px 40px rgba(17,19,21,.13),0 2px 8px rgba(17,19,21,.05),
+    inset 0 1px 1px rgba(255,255,255,.9),inset 0 -1px 1px rgba(255,255,255,.35)}
 .dock a,.dock button{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);
   font-size:16px;font-weight:400;line-height:1;letter-spacing:0;text-transform:none;
   color:#030712;padding:9px 12px}
