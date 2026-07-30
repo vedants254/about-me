@@ -78,7 +78,8 @@ if(!document.querySelector('.dock')){
     ['Jump to selected work','#projects','systems and repos'],
     ['Jump to skills','#stack','tools'],
     ['Jump to extra-curriculars','#extra','leadership'],
-    ['Download resume','Vedant_Shelkar_Resume.pdf','pdf'],
+    // TEMPORARILY HIDDEN: CV download — uncomment to restore
+    // ['Download resume','Vedant_Shelkar_Resume.pdf','pdf'],
     ['Email Vedant','mailto:vedantshelkar@gmail.com','email'],
     ['GitHub','https://github.com/vedants254','external'],
     ['LinkedIn','https://www.linkedin.com/in/vedant-shelkar-5a9a59281/','external']
