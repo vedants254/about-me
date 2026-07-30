@@ -55,8 +55,8 @@ const ICON={
   contact:'<rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m2.5 7.5 9.5 5.6 9.5-5.6"/>'
 };
 const SECTIONS=[
-  ['Home','hero','home'],['About','about','about'],['Work','work','work'],['Builds','projects','builds'],
-  ['Stack','stack','stack'],['Extra','extra','extra'],['Edu','education','edu']
+  ['Home','hero','home'],['About','about','about'],['Edu','education','edu'],['Work','work','work'],
+  ['Builds','projects','builds'],['Stack','stack','stack'],['Extra','extra','extra']
 ];
 if(!document.querySelector('.dock')){
   const dock=document.createElement('div');
@@ -73,11 +73,11 @@ if(!document.querySelector('.dock')){
   document.body.appendChild(panel);
   const results=panel.querySelector('.cmd-results'),input=panel.querySelector('input');
   const cmds=[
+    ['Jump to education','#education','IIT Madras'],
     ['Jump to experience','#work','timeline'],
     ['Jump to selected work','#projects','systems and repos'],
     ['Jump to skills','#stack','tools'],
     ['Jump to extra-curriculars','#extra','leadership'],
-    ['Jump to education','#education','IIT Madras'],
     ['Download resume','Vedant_Shelkar_Resume.pdf','pdf'],
     ['Email Vedant','mailto:vedantshelkar@gmail.com','email'],
     ['GitHub','https://github.com/vedants254','external'],
