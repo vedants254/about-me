@@ -3,283 +3,396 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Vedant Shelkar — ML / AI Engineer</title>
-<meta name="description" content="Vedant Shelkar — Machine Learning & AI Engineer, IIT Madras. Building agentic systems, RAG pipelines, and LLM infrastructure." />
+<title>Cast CLI — Coming Soon</title>
+<meta name="description" content="Cast — An ML research assistant that autonomously investigates, writes, and ships ML code using the Hugging Face ecosystem." />
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-<link rel="canonical" href="https://vedantshelkar.space/" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://vedantshelkar.space/" />
-<meta property="og:title" content="Vedant Shelkar — ML / AI Engineer" />
-<meta property="og:description" content="ML Engineer, Building scalable AI infrastructure alongside Forward Deployed Software Engineering." />
-<meta property="og:image" content="https://vedantshelkar.space/me.jpeg" />
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:image" content="https://vedantshelkar.space/me.jpeg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/style.css?v=30" />
-<link rel="stylesheet" href="css/clean.css?v=30" />
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0a0a0f;
+  --fg: #e8e8f0;
+  --accent: #6366f1;
+  --accent-bright: #818cf8;
+  --border: rgba(99, 102, 241, 0.2);
+  --glow: rgba(99, 102, 241, 0.4);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Animated background */
+.bg-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.3;
+  animation: gridMove 20s linear infinite;
+  z-index: 0;
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+.glow-orb {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb-1 {
+  top: -200px;
+  right: -200px;
+  animation: float 15s ease-in-out infinite;
+}
+
+.orb-2 {
+  bottom: -200px;
+  left: -200px;
+  animation: float 20s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, 50px) scale(1.1); }
+}
+
+.container {
+  max-width: 900px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.logo {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-bright) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  animation: slideDown 0.8s ease-out;
+  letter-spacing: -0.02em;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tagline {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 2rem;
+  animation: slideDown 0.8s ease-out 0.2s both;
+}
+
+.description {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: rgba(232, 232, 240, 0.7);
+  margin-bottom: 3rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: slideDown 0.8s ease-out 0.4s both;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  animation: slideDown 0.8s ease-out 0.6s both;
+}
+
+.feature {
+  background: rgba(99, 102, 241, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.feature:hover {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: var(--accent);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.feature h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--accent-bright);
+}
+
+.feature p {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: rgba(232, 232, 240, 0.6);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  animation: slideDown 0.8s ease-out 0.8s both;
+}
+
+.pulse-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent-bright);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+.cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  animation: slideDown 0.8s ease-out 1s both;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary:hover {
+  background: var(--accent-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--fg);
+  border-color: var(--border);
+}
+
+.btn-secondary:hover {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: var(--accent);
+}
+
+.tech-stack {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border);
+  animation: slideDown 0.8s ease-out 1.2s both;
+}
+
+.tech-stack h3 {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(232, 232, 240, 0.5);
+  margin-bottom: 1rem;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.tech-tag {
+  padding: 0.5rem 1rem;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: rgba(232, 232, 240, 0.8);
+}
+
+@media (max-width: 768px) {
+  .logo {
+    font-size: 3rem;
+  }
+  
+  .tagline {
+    font-size: 1.25rem;
+  }
+  
+  .description {
+    font-size: 1rem;
+  }
+  
+  .features {
+    grid-template-columns: 1fr;
+  }
+  
+  .cta {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+</style>
 </head>
 <body>
 
-<div id="boot"><div class="boot-inner">
-  <div class="boot-line" id="bootLog"></div>
-  <div class="boot-bar"><i id="bootBar"></i></div>
-  <div class="boot-pct"><span>INITIALIZING NEURAL_CORE</span><span id="bootPct">0%</span></div>
-</div></div>
+<div class="bg-grid"></div>
+<div class="glow-orb orb-1"></div>
+<div class="glow-orb orb-2"></div>
 
-<div class="atmos"></div>
-<canvas id="neural"></canvas>
+<div class="container">
+  <div class="logo">cast</div>
+  <h1 class="tagline">Your ML Research Copilot</h1>
+  
+  <p class="description">
+    An autonomous ML research assistant that investigates, writes, and ships production-ready ML code using the Hugging Face ecosystem — with deep access to docs, papers, datasets, and cloud compute.
+  </p>
 
-<!-- HEADER -->
-<header class="wrap head" id="hero">
-  <div class="head-row">
-    <div class="head-copy">
-      <h1 class="rv">Vedant Shelkar</h1>
-      <p class="head-tag rv" data-d="1">Undergrad @ IIT Madras · Engineer and researcher, building scalable AI infrastructure alongside Forward Deployed Software Engineering.</p>
-      <div class="head-links rv" data-d="2">
-        <a href="mailto:vedantshelkar@gmail.com" aria-label="Email">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
-        </a>
-        <a href="https://github.com/vedants254" target="_blank" rel="noopener" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" class="fill" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5 3.3 9.3 7.8 10.8.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.1-3.1-.1-.3-.5-1.5.1-3 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.5.2 2.7.1 3 .7.8 1.1 1.8 1.1 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .4.2.7.8.6 4.5-1.5 7.8-5.8 7.8-10.8C23.5 5.7 18.3.5 12 .5z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/vedant-shelkar-5a9a59281/" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" class="fill" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM2.4 9h5.2v13H2.4zM9.5 9h5v1.8h.1c.7-1.3 2.3-2.1 3.9-2.1 3.3 0 4.1 2 4.1 5.1V22h-5.2v-6.3c0-1.5-.5-2.4-1.8-2.4-1.1 0-1.7.7-2 1.4-.1.3-.1.7-.1 1V22h-4z"/></svg>
-        </a>
-        <!-- TEMPORARILY HIDDEN: CV download. To restore, delete this comment wrapper.
-        <a class="wide" href="Vedant_Shelkar_Resume.pdf" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4"/><path d="M4 20h16"/></svg>
-          <span>CV</span>
-        </a>
-        -->
-      </div>
+  <div class="features">
+    <div class="feature">
+      <span class="feature-icon">🔬</span>
+      <h3>Autonomous Research</h3>
+      <p>Searches HF docs, papers, datasets, and model repos on your behalf. No more context switching.</p>
     </div>
-    <div class="head-photo rv" data-d="1">
-      <img src="me.jpeg" alt="Vedant Shelkar" />
+    
+    <div class="feature">
+      <span class="feature-icon">⚡</span>
+      <h3>Cloud Execution</h3>
+      <p>Writes and runs code in isolated Modal sandboxes. No local setup required. A10G, H100 — you name it.</p>
     </div>
-  </div>
-</header>
-
-<!-- ABOUT -->
-<section class="wrap sec" id="about">
-  <h2 class="rv">About</h2>
-  <div class="prose rv">
-    <p>Final-year B.Tech at IIT Madras. My interests and experience ranges from ML research to forward deployed engineering. Training and interpreting models at one end, sitting with the people who actually use them at the other. Always curious about how things work, and how they can be made better.</p>
-    <p>Currently building voice AI agents at Riverline AI and researching LLM interpretability at IIT Madras' Centre for Responsible AI.</p>
-    <p>When I'm not tinkering with agents and models, I also manage operations for quant hiring across India.</p>
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section class="wrap sec" id="education">
-  <h2 class="rv">Education</h2>
-  <div class="edu rv">
-    <span class="tl-logo lg"><img src="img/logos/iitm.webp" alt="" onerror="this.remove()" /><span class="ini">IM</span></span>
-    <div class="edu-main">
-      <div class="edu-top">
-        <div class="edu-name">Indian Institute of Technology Madras</div>
-        <div class="edu-when">2023 - 2027</div>
-      </div>
-      <div class="edu-degree">B.Tech</div>
+    
+    <div class="feature">
+      <span class="feature-icon">🚀</span>
+      <h3>End-to-End Pipeline</h3>
+      <p>From research to fine-tuning to deployment. Pushes trained models and results directly to HF Hub.</p>
+    </div>
+    
+    <div class="feature">
+      <span class="feature-icon">👁️</span>
+      <h3>Full Transparency</h3>
+      <p>React UI streams every tool call, approval gate, and execution result in real-time.</p>
     </div>
   </div>
-</section>
 
-<!-- WORK EXPERIENCE -->
-<section class="wrap sec" id="work">
-  <h2 class="rv">Work Experience</h2>
-  <div class="xp" id="xpList">
-
-    <div class="xp-item rv">
-      <span class="tl-logo"><img src="img/logos/riverline.png" alt="" onerror="this.remove()" /><span class="ini">RA</span></span>
-      <div class="xp-card">
-        <div class="xp-row">
-          <div class="xp-org"><a href="https://riverline.ai/" target="_blank" rel="noopener">Riverline AI</a> <span class="chip">Voice AI Agents</span></div>
-          <div class="xp-date">April 2026 – July 2026</div>
-        </div>
-        <div class="xp-row">
-          <div class="xp-role">Engineering Intern</div>
-          <span class="badge">Bengaluru</span>
-        </div>
-        <p class="xp-desc">All about Voice agents for debt collection and credit wellness</p>
-        <div class="xp-tags"><span class="tag">Agents</span><span class="tag">Evals</span><span class="tag">STT</span><span class="tag">TTS</span><span class="tag">VAD</span><span class="tag">Python</span></div>
-      </div>
-    </div>
-
-    <div class="xp-item rv">
-      <span class="tl-logo"><img src="img/logos/iitm.webp" alt="" onerror="this.remove()" /><span class="ini">IM</span></span>
-      <div class="xp-card featured">
-        <div class="xp-row">
-          <div class="xp-org"><a href="https://cerai.iitm.ac.in/" target="_blank" rel="noopener">CeRAI, IIT Madras</a> <span class="chip">LLM Interpretability</span></div>
-          <div class="xp-date">March 2026 – Present</div>
-        </div>
-        <div class="xp-row">
-          <div class="xp-role">Research Assistant</div>
-          <span class="badge">Chennai</span>
-        </div>
-        <p class="xp-desc">LAM-driven reasoning models for the Indian judicial system, working towards interpretability of LLMs in legal systems. Joint project with IIT Kanpur faculty.</p>
-        <div class="xp-tags"><span class="tag">Interpretability</span><span class="tag">Reasoning Models</span><span class="tag">Legal NLP</span></div>
-      </div>
-    </div>
-
-    <div class="xp-item rv">
-      <span class="tl-logo"><img src="img/logos/gollm.png" alt="" onerror="this.remove()" /><span class="ini">GL</span></span>
-      <div class="xp-card">
-        <div class="xp-row">
-          <div class="xp-org"><a href="https://gollm.co.uk/" target="_blank" rel="noopener">GoLLM Limited</a> <span class="chip">Data Science &amp; Analytics</span></div>
-          <div class="xp-date">December 2025 – January 2026</div>
-        </div>
-        <div class="xp-row">
-          <div class="xp-role">Developer Intern</div>
-          <span class="badge">Edinburgh, UK</span>
-        </div>
-        <p class="xp-desc">Built an automated survey-analytics pipeline on LangGraph + Celery, with a token-efficient orchestration layer that cut API costs 40%.</p>
-        <div class="xp-tags"><span class="tag">LangGraph</span><span class="tag">Celery</span><span class="tag">AWS S3</span><span class="tag">MongoDB</span><span class="tag">Time-Series</span></div>
-      </div>
-    </div>
-
-    <div class="xp-item rv">
-      <span class="tl-logo"><img src="img/logos/iicpc.png" alt="" onerror="this.remove()" /><span class="ini">IC</span></span>
-      <div class="xp-card featured">
-        <div class="xp-row">
-          <div class="xp-org"><a href="https://codefest.iicpc.com/" target="_blank" rel="noopener">IICPC</a> <span class="chip">Operations</span></div>
-          <div class="xp-date">December 2024 – Present</div>
-        </div>
-        <div class="xp-row">
-          <div class="xp-role">Manager (Core Team) — Operations</div>
-          <span class="badge">Chennai</span>
-        </div>
-        <p class="xp-desc">Managing operations for quant hiring in India.</p>
-        <div class="xp-tags"><span class="tag">Operations</span><span class="tag">Quant Hiring</span></div>
-      </div>
-    </div>
-
-    <div class="xp-item rv">
-      <span class="tl-logo"><img src="img/logos/iitm.webp" alt="" onerror="this.remove()" /><span class="ini">IM</span></span>
-      <div class="xp-card">
-        <div class="xp-row">
-          <div class="xp-org"><a href="https://www.iitm.ac.in/" target="_blank" rel="noopener">IIT Madras</a> <span class="chip">NLP &amp; Fine-tuning</span></div>
-          <div class="xp-date">April 2025 – September 2025</div>
-        </div>
-        <div class="xp-row">
-          <div class="xp-role">Research Assistant — Dr. M. Jagannathan</div>
-          <span class="badge">Chennai</span>
-        </div>
-        <p class="xp-desc">Legal-document NLP for construction claims. Fine-tuned NER pipeline that hit 86.1% F1 against human annotation.</p>
-        <div class="xp-tags"><span class="tag">spaCy</span><span class="tag">Tesseract OCR</span><span class="tag">NER</span><span class="tag">LLM Retrieval</span></div>
-      </div>
-    </div>
-
+  <div class="status">
+    <span class="pulse-dot"></span>
+    <span>Coming Soon — Stay Tuned</span>
   </div>
-</section>
 
-<!-- SELECTED WORK -->
-<section class="wrap sec" id="projects">
-  <h2 class="rv">Selected Work</h2>
-  <div class="proj-grid" id="projGrid"></div>
-  <div class="more-wrap"><button class="more-btn" type="button" id="projMore" aria-expanded="false">Show all projects <i>⌄</i></button></div>
-</section>
-
-<!-- SKILLS -->
-<section class="wrap sec" id="stack">
-  <h2 class="rv">Skills</h2>
-  <div class="filters rv" id="skillFilters" role="tablist" aria-label="Filter skills"></div>
-  <div class="skill-list rv" id="skillGrid">
-    <span class="skill-tile" data-cat="ml">PyTorch</span>
-    <span class="skill-tile" data-cat="ml">Fine-tuning</span>
-    <span class="skill-tile" data-cat="ml">SFT</span>
-    <span class="skill-tile" data-cat="ml">QLoRA</span>
-    <span class="skill-tile" data-cat="ml">RLHF</span>
-    <span class="skill-tile" data-cat="ml">HuggingFace Transformers</span>
-    <span class="skill-tile" data-cat="ml">TensorFlow</span>
-    <span class="skill-tile" data-cat="ml">Scikit-Learn</span>
-    <span class="skill-tile" data-cat="llm">LangGraph</span>
-    <span class="skill-tile" data-cat="llm">LangChain</span>
-    <span class="skill-tile" data-cat="llm">RAG</span>
-    <span class="skill-tile" data-cat="llm">Vector DBs</span>
-    <span class="skill-tile" data-cat="llm">Qdrant</span>
-    <span class="skill-tile" data-cat="llm">Pinecone</span>
-    <span class="skill-tile" data-cat="llm">Agentic orchestration</span>
-    <span class="skill-tile" data-cat="llm">Prompt engineering</span>
-    <span class="skill-tile" data-cat="llm">Eval engineering</span>
-    <span class="skill-tile" data-cat="infra">Python</span>
-    <span class="skill-tile" data-cat="infra">C++</span>
-    <span class="skill-tile" data-cat="infra">FastAPI</span>
-    <span class="skill-tile" data-cat="infra">Celery</span>
-    <span class="skill-tile" data-cat="infra">Redis</span>
-    <span class="skill-tile" data-cat="infra">Docker</span>
-    <span class="skill-tile" data-cat="infra">AWS</span>
-    <span class="skill-tile" data-cat="infra">GCP</span>
-    <span class="skill-tile" data-cat="infra">PostgreSQL</span>
-    <span class="skill-tile" data-cat="infra">MongoDB</span>
-    <span class="skill-tile" data-cat="also">Information Retrieval</span>
-    <span class="skill-tile" data-cat="also">Retrieval Systems</span>
-    <span class="skill-tile" data-cat="also">Workflow Automation</span>
-    <span class="skill-tile" data-cat="also">Time-Series Analysis</span>
-    <span class="skill-tile" data-cat="also">Clustering</span>
-    <span class="skill-tile" data-cat="also">Statistical Testing</span>
-    <span class="skill-tile" data-cat="also">Survey Analytics</span>
-    <span class="skill-tile" data-cat="also">Claims Analysis</span>
-    <span class="skill-tile" data-cat="also">Systems Management</span>
-    <span class="skill-tile" data-cat="also">Large Language Models</span>
+  <div class="cta">
+    <a href="https://github.com/vedants254/cast-cli" class="btn btn-primary" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 .5C5.7.5.5 5.7.5 12c0 5 3.3 9.3 7.8 10.8.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.1-3.1-.1-.3-.5-1.5.1-3 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.5.2 2.7.1 3 .7.8 1.1 1.8 1.1 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .4.2.7.8.6 4.5-1.5 7.8-5.8 7.8-10.8C23.5 5.7 18.3.5 12 .5z"/>
+      </svg>
+      View on GitHub
+    </a>
+    <a href="mailto:vedantshelkar@gmail.com" class="btn btn-secondary">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <path d="m2 7 10 6 10-6"/>
+      </svg>
+      Get Updates
+    </a>
   </div>
-  <p class="skill-count rv" id="skillCount"></p>
-</section>
 
-<!-- EXTRA-CURRICULARS -->
-<section class="wrap sec" id="extra">
-  <h2 class="rv">Extra-Curriculars</h2>
-  <div class="tiles" id="extraTiles">
-    <div class="tile rv">
-      <div class="tile-top"><span class="big">#2</span><span class="badge">E-Summit'25</span></div>
-      <div class="h">VentureSprint, IIT Madras</div>
-      <div class="d">2nd nationally among 300+ teams. Pitched a "Tap &amp; Pay" SIM-style card activation; offered pre-incubation by PedalStart.</div>
-    </div>
-    <div class="tile rv" data-d="1">
-      <div class="tile-top"><span class="big">₹1Cr+</span><span class="badge">Sponsorship</span></div>
-      <div class="h">Shaastra 2025 · Sponsorship &amp; PR</div>
-      <div class="d">Coordinated ₹1Cr+ in deliverables across 15+ companies including Boeing, Caterpillar and Digikey.</div>
-    </div>
-    <div class="tile rv" data-d="2">
-      <div class="tile-top"><span class="big">45K+</span><span class="badge">Operations</span></div>
-      <div class="h">IICPC Codefest · Ops</div>
-      <div class="d">End-to-end logistics across 8 IITs for 45,000+ participants.</div>
-    </div>
-    <div class="tile rv" data-d="3">
-      <div class="tile-top"><span class="big">★</span><span class="badge">Recognition</span></div>
-      <div class="h">PedalStart Pre-Incubation</div>
-      <div class="d">Selected for pre-incubation off the back of the VentureSprint pitch.</div>
-    </div>
-    <div class="tile rv">
-      <div class="tile-top"><span class="big">⬡</span><span class="badge">Robotics</span></div>
-      <div class="h">Mars Rover Team · Anveshak</div>
-      <div class="d">Built a Mars rover with IIT Madras' interplanetary robotics team. (May – Dec 2024)</div>
-    </div>
-    <div class="tile rv" data-d="1">
-      <div class="tile-top"><span class="big">✦</span><span class="badge">Mentorship</span></div>
-      <div class="h">Student Mentor · Saathi IITM</div>
-      <div class="d">Mentored two first-years on academics and early-career planning. (Aug 2024 – May 2025)</div>
-    </div>
-    <div class="tile rv" data-d="2">
-      <div class="tile-top"><span class="big">❝</span><span class="badge">Debate</span></div>
-      <div class="h">Parliamentary Debate Mgmt</div>
-      <div class="d">Ran the first edition of the IITM Parliamentary Debate. (Sep 2023 – Nov 2024)</div>
+  <div class="tech-stack">
+    <h3>Built With</h3>
+    <div class="tech-tags">
+      <span class="tech-tag">HuggingFace</span>
+      <span class="tech-tag">Modal</span>
+      <span class="tech-tag">FastAPI</span>
+      <span class="tech-tag">React</span>
+      <span class="tech-tag">LangGraph</span>
+      <span class="tech-tag">Claude SDK</span>
+      <span class="tech-tag">PyTorch</span>
     </div>
   </div>
-  <div class="more-wrap"><button class="more-btn" type="button" id="extraMore" aria-expanded="false">Show all <i>⌄</i></button></div>
-</section>
+</div>
 
-<footer class="wrap">
-  <span>© 2026 Vedant Shelkar · Chennai, IN</span>
-  <span>Engineer &amp; researcher · IIT Madras</span>
-</footer>
-
-<script src="js/main.js?v=30"></script>
-
-<!-- Vercel Web Analytics (plain-HTML integration — no npm, no React).
-     Vercel serves /_vercel/insights/* on the deployment, so this 404s locally. -->
-<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
-<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
