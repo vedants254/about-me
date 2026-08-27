@@ -183,7 +183,7 @@ if(grid){
     {n:'Conversational Analytics',d:'A conversational analytics platform on LangGraph and async FastAPI, with a Celery task pipeline and a sandbox that runs LLM-generated Python without trusting it.',s:['LangGraph','FastAPI','Celery','Redis','PostgreSQL','Docker'],repo:'Survey-analysis-assistant',live:false},
     {n:'FinBot',d:'A RAG assistant for financial reports with table extraction, multi-document comparisons, and conversational memory.',s:['Llama 3.1','LangChain','ChromaDB','PDFPlumber','Streamlit'],repo:'FinBot',live:false},
     {n:'Mini RAG',d:'A compact RAG service that answers with inline citations. Deployed live on HuggingFace Spaces.',s:['RAG','Streamlit','Docker','HF Spaces'],repo:'minirag',live:'https://huggingface.co/spaces/vedants254/minirag'},
-    {n:'Prompted Segmentation',d:'Text-conditioned image segmentation on CLIPSeg — masks straight from free-text prompts, no custom conditioning.',s:['CLIPSeg','CLIP','PyTorch','Vision'],repo:'prompted-segmentation',live:false},
+    {n:'Prompted Segmentation',d:'Text-conditioned image segmentation on CLIPSeg, producing masks straight from free-text prompts without custom conditioning.',s:['CLIPSeg','CLIP','PyTorch','Vision'],repo:'prompted-segmentation',live:false},
     {n:'Fine-tuned GPT-2 · Medical QA',d:'GPT-2 fine-tuned for medical Q&A with PEFT and QLoRA, cutting training memory 45%.',s:['GPT-2','QLoRA','PEFT','HuggingFace'],repo:'Finetuned-GPT2',live:false},
     {n:'UEFA Match Prediction',d:'Random Forest and XGBoost over 27 years of UEFA data, at 79.9% balanced accuracy and explained with SHAP.',s:['XGBoost','Random Forest','PCA','SHAP'],repo:'Match-Predictions-',live:false},
   ];
