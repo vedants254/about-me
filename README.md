@@ -1,12 +1,13 @@
 # about-me
 
-Personal site for Vedant Shelkar — a single-page, dependency-free static site.
+Personal site for Vedant Shelkar — a dependency-free static site.
 No build step, no framework, no `package.json`.
 
 ## Structure
 
 ```
-index.html          the whole site (header, about, work, projects, skills, extra, education)
+index.html          Cast CLI coming-soon page, served at /
+portfolio.html      portfolio page, rewritten to /portfolio by Vercel
 404.html            not-found page, served automatically by Vercel
 favicon.svg         monogram favicon
 css/style.css       base layer
@@ -17,7 +18,7 @@ me.jpeg             header photo
 vercel.json         cache + security headers
 work.html  projects.html  stack.html  extracurriculars.html  contact.html
                     redirect stubs kept so previously shared links still resolve
-                    (each one bounces to index.html#<section>)
+                    (each one bounces to /portfolio#<section>)
 ```
 
 ## Deploying on Vercel
@@ -38,8 +39,9 @@ preview URL.
 
 ### Custom domain
 
-The site is set up for **vedantshelkar.space** — `canonical`, `og:url`,
-`og:image`, `robots.txt` and `sitemap.xml` all point there already.
+The root site is served at **vedantshelkar.space**, while the portfolio is served
+at **vedantshelkar.space/portfolio**. The rewrite in `vercel.json` maps that clean
+URL to `portfolio.html` without changing the browser URL.
 
 To attach it: Vercel project → **Settings → Domains → Add** `vedantshelkar.space`,
 then set the DNS records Vercel shows you at your registrar:
@@ -92,8 +94,8 @@ python -m http.server 8000
 
 ## Cache busting
 
-`css/*` and `js/*` are served with a one-year immutable cache, so they are
-versioned by query string in `index.html`:
+`css/*` and `js/*` are served with a one-year immutable cache, so portfolio
+assets are versioned by query string in `portfolio.html`:
 
 ```html
 <link rel="stylesheet" href="css/style.css?v=25" />
