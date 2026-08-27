@@ -176,7 +176,7 @@ if(boot){
 const grid=document.getElementById('projGrid');
 if(grid){
   const projects=[
-    {n:'Voice Turn Detection',d:'An audio-native endpointing model for voice agents: Whisper-Tiny, learned temporal attention pooling, and leakage-safe evaluation.',s:['Whisper-Tiny','PyTorch','Audio ML','Modal'],repo:'Voice-Turn-detection',live:false},
+    {n:'Voice Turn Detection',d:'A custom, audio-native voice turn detector built by fine-tuning a pretrained Whisper-Tiny encoder end to end with learned temporal attention pooling.',s:['Whisper-Tiny','PyTorch','Audio ML','Modal'],repo:'Voice-Turn-detection',live:false},
     {n:'Cast',d:'An ML research assistant that investigates Hugging Face docs, papers, and datasets, runs code in Modal sandboxes, and dispatches GPU training jobs.',s:['Agents','Hugging Face','Modal','FastAPI'],repo:'cast-cli',live:false},
     {n:'CodeOrbit',d:'An MCP server and graph-centric code intelligence platform for dependency analysis, code search, and AI-ready context.',s:['MCP','Tree-sitter','NetworkX','FastAPI'],repo:'codeOrbit',live:false},
     {n:'Voice Agent Evals',d:'An evidence-based LLM-as-judge framework with seven domain-specific dimensions and 90% agreement with human verdicts.',s:['LLM as Judge','Anthropic','Gemini','Evals'],repo:'voice-agent-evals',live:false},
