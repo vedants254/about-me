@@ -216,7 +216,7 @@ function wireMore(listId,btnId,shownLabel,hiddenLabel,visible){
   });
 }
 wireMore('projGrid','projMore','Show fewer','Show all 10 projects',6);
-wireMore('extraTiles','extraMore','Show fewer','Show all 7');
+wireMore('extraTiles','extraMore','Show fewer','Show all 6');
 
 /* ===== skill filters ===== */
 const skillGrid=document.getElementById('skillGrid');
