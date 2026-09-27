@@ -7,7 +7,7 @@ if(cv){
   const ctx=cv.getContext('2d');
   let W,H,nodes=[],DPR=Math.min(devicePixelRatio||1,2),tick=0;
   let pmx=mx*DPR,pmy=my*DPR;
-  function build(){const n=Math.min(34,Math.floor(innerWidth*innerHeight/42000));nodes=[];for(let i=0;i<n;i++){nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.08*DPR,vy:(Math.random()-.5)*.08*DPR,r:(Math.random()*1.2+.7)*DPR,hot:Math.random()<.14})}}
+  function build(){const n=Math.min(34,Math.floor(innerWidth*innerHeight/42000));nodes=[];for(let i=0;i<n;i++){nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.08*DPR,vy:(Math.random()-.5)*.08*DPR,r:(Math.random()*1.25+.8)*DPR,hot:Math.random()<.14})}}
   function resize(){W=cv.width=innerWidth*DPR;H=cv.height=innerHeight*DPR;cv.style.width=innerWidth+'px';cv.style.height=innerHeight+'px';build()}
   addEventListener('resize',resize);resize();
   addEventListener('mousemove',e=>{pmx=e.clientX*DPR;pmy=e.clientY*DPR});
@@ -15,10 +15,10 @@ if(cv){
     tick+=.012;
     ctx.clearRect(0,0,W,H);
     const step=84*DPR;                              // sparser grid
-    ctx.fillStyle='rgba(17,19,21,.085)';            // fainter dots
+    ctx.fillStyle='rgba(17,19,21,.105)';            // soft background dots
     for(let x=(tick*18*DPR)%step;x<W;x+=step){
       for(let y=(tick*9*DPR)%step;y<H;y+=step){
-        ctx.beginPath();ctx.arc(x,y,.85*DPR,0,7);ctx.fill();
+        ctx.beginPath();ctx.arc(x,y,.95*DPR,0,7);ctx.fill();
       }
     }
     const link=170*DPR;
@@ -31,13 +31,13 @@ if(cv){
     for(let i=0;i<nodes.length;i++){
       for(let j=i+1;j<nodes.length;j++){
         const a=nodes[i],b=nodes[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);
-        if(d<link){const o=(1-d/link)*.16;ctx.strokeStyle=`rgba(17,19,21,${o})`;ctx.lineWidth=.5*DPR;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}
+        if(d<link){const o=(1-d/link)*.2;ctx.strokeStyle=`rgba(17,19,21,${o})`;ctx.lineWidth=.6*DPR;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}
       }
     }
     for(const p of nodes){
       const dm=Math.hypot(pmx-p.x,pmy-p.y),near=dm<200*DPR;
-      ctx.fillStyle=near||p.hot?'rgba(155,226,47,.85)':'rgba(17,19,21,.26)';
-      ctx.beginPath();ctx.arc(p.x,p.y,near?p.r*1.8:p.r,0,7);ctx.fill();
+      ctx.fillStyle=near||p.hot?'rgba(155,226,47,.9)':'rgba(17,19,21,.32)';
+      ctx.beginPath();ctx.arc(p.x,p.y,near?p.r*1.85:p.r,0,7);ctx.fill();
     }
     requestAnimationFrame(draw);
   })();
